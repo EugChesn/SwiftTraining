@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "Играть"; ObjectID = "U5n-bq-n07"; */
+"U5n-bq-n07.normalTitle" = "Играть";
+
+/* Class = "UILabel"; text = "Жми играть"; ObjectID = "wDR-c0-5Kd"; */
+"wDR-c0-5Kd.text" = "Жми играть";
+
+/* Class = "UILabel"; text = "Введите число"; ObjectID = "xL5-mn-rxD"; */
+"xL5-mn-rxD.text" = "Введите число";
+
+/* Class = "UIButton"; normalTitle = "Сброс"; ObjectID = "yEZ-kq-dps"; */
+"yEZ-kq-dps.normalTitle" = "Сброс";

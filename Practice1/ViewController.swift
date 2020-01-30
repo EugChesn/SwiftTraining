@@ -31,28 +31,27 @@ class ViewController: UIViewController {
                 user_number = (UInt32(anotherFieldText))
             
             inputField.text = ""
-                
+            
             if let anotherUserNumber = user_number {
-                
                 if(anotherUserNumber == rand_number) {
-                    resultLabel.text = "Угадал)"
+                    resultLabel.text = NSLocalizedString("guessedTextMessage", comment: "")
                 }
                 else if anotherUserNumber < rand_number {
-                    resultLabel.text = "Мало("
+                    resultLabel.text = NSLocalizedString("fewTextMessage", comment: "")
                 }
                 else {
-                    resultLabel.text = "Много("
+                    resultLabel.text = NSLocalizedString("manyTextMessage", comment: "")
                 }
             }
             }
         }
         else{
-            resultLabel.text = "Не корректный ввод"
+            resultLabel.text = NSLocalizedString("incorrectTextMessage", comment: "")
         }
     }
     @IBAction func resetGame(sender : AnyObject) { // Сброс сгенерированного числа
         rand_number = guess_num()
-        resultLabel.text = "Жми играть"
+        resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
     }
 }
 
