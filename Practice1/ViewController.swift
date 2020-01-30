@@ -20,35 +20,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputField: UITextField!
     
     
-    @IBAction func startGame(sender : AnyObject) {
-        if(inputField.text != nil && inputField.text != ""){
-            user_number = (UInt32(inputField.text!))
-            inputField.text = ""
-            
-            if(user_number == rand_number){
-                resultLabel.text = "Угадал)"
-            }
-            else if user_number! < rand_number {
-                resultLabel.text = "Мало("
-            }
-            else  {
-                resultLabel.text = "Много("
-            }
-        }
-        else{
-            resultLabel.text = "Не корректное число"
-        }
-        
-    }
-    
-    @IBAction func resetGame(sender : AnyObject) { // Сброс сгенерированного числа
-        rand_number = guess_num()
-        resultLabel.text = "Жми играть"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func startGame(sender : AnyObject) {
+        if(inputField.text != ""){
+            if let anotherFieldText = inputField.text {
+                user_number = (UInt32(anotherFieldText))
+            
+            inputField.text = ""
+                
+            if let anotherUserNumber = user_number {
+                
+                if(anotherUserNumber == rand_number) {
+                    resultLabel.text = "Угадал)"
+                }
+                else if anotherUserNumber < rand_number {
+                    resultLabel.text = "Мало("
+                }
+                else {
+                    resultLabel.text = "Много("
+                }
+            }
+            }
+        }
+        else{
+            resultLabel.text = "Не корректный ввод"
+        }
+    }
+    @IBAction func resetGame(sender : AnyObject) { // Сброс сгенерированного числа
+        rand_number = guess_num()
+        resultLabel.text = "Жми играть"
     }
 }
 
