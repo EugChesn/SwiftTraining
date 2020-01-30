@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     //Вводимое число пользователем
     @IBOutlet weak var inputField: UITextField!
     
+    //Количество ходов
+    @IBOutlet weak var stepLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +30,20 @@ class ViewController: UIViewController {
     
     @IBAction func startGame(sender : AnyObject) {
         if(inputField.text != ""){
+            
+            //Увеличиваем счетчик ходов пользователя
+            if let anotherStepLabel = stepLabel.text{
+                if let intPreviousStep = Int(anotherStepLabel){
+                    let resCurrentStep = String(intPreviousStep + 1)
+                    stepLabel.text = resCurrentStep
+                }
+            }
+            
+            //Считываем число пользователя и обнуляем текстовое поле
             if let anotherFieldText = inputField.text {
                 user_number = (UInt32(anotherFieldText))
-            
             inputField.text = ""
+            
             
             if let anotherUserNumber = user_number {
                 if(anotherUserNumber == rand_number) {
@@ -49,8 +62,11 @@ class ViewController: UIViewController {
             resultLabel.text = NSLocalizedString("incorrectTextMessage", comment: "")
         }
     }
-    @IBAction func resetGame(sender : AnyObject) { // Сброс сгенерированного числа
+    
+    // Сброс сгенерированного числа
+    @IBAction func resetGame(sender : AnyObject) {
         rand_number = guess_num()
+        stepLabel.text = "0"
         resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
     }
 }
