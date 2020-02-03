@@ -47,8 +47,11 @@ class ViewController: UIViewController , FirstViewControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        rand_number = guess_num(min_thresh: min, max_thresh: max)
+        countWin = UserDefaults.standard.value(forKey: "countWin") as? UInt32
+        if let tmpCount = UserDefaults.standard.value(forKey: "countStepAll") as? UInt32{
+            countStepAll = tmpCount
+        }
+        //rand_number = guess_num(min_thresh: min, max_thresh: max)
     }
     
     func prepareForShowingSettings(_ segue: UIStoryboardSegue, sender: Any?){
@@ -88,6 +91,7 @@ class ViewController: UIViewController , FirstViewControllerDelegate{
         resetButton.isEnabled = true
         
         promptInputLabel.text = NSLocalizedString("promptInput", comment: "") + NSLocalizedString("rangeTextMessage", comment: "") + "(\(min), \(max))"
+        resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
     }
     
     @IBAction func startGame(sender : AnyObject) {
@@ -110,6 +114,7 @@ class ViewController: UIViewController , FirstViewControllerDelegate{
             if let anotherUserNumber = user_number {
                 if(anotherUserNumber == rand_number) {
                     resultLabel.text = NSLocalizedString("guessedTextMessage", comment: "")
+                    startGameButton.isEnabled = false
                     if let count = countWin{
                         countWin = count + 1
                     }else{
@@ -128,11 +133,15 @@ class ViewController: UIViewController , FirstViewControllerDelegate{
         else{
             resultLabel.text = NSLocalizedString("incorrectTextMessage", comment: "")
         }
+        
+        UserDefaults.standard.set(countWin, forKey: "countWin")
+        UserDefaults.standard.set(countStepAll, forKey: "countStepAll")
     }
     
     // Сброс сгенерированного числа
     @IBAction func resetGame(sender : AnyObject) {
         rand_number = guess_num(min_thresh: min, max_thresh: max)
+        startGameButton.isEnabled = true
         stepLabel.text = "0"
         resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
     }

@@ -22,6 +22,23 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        if numbersGame == 0{
+            numbersWin = UserDefaults.standard.value(forKey: "countWin") as? UInt32
+
+            if let numAll = UserDefaults.standard.value(forKey: "countStepAll") as? UInt32{
+                numbersGame = numAll
+            }
+            if let numAver = UserDefaults.standard.value(forKey: "averageStep") as? Double{
+                averageStepForWin = numAver
+            }
+            
+        }
+        
+        setValueView()
+    }
+    
+    func setValueView() {
         if let numStr = numbersGameLabel.text{
             numbersGameLabel.text = numStr + String(numbersGame)
         }
