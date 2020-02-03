@@ -1,0 +1,34 @@
+
+/* Class = "UIButton"; normalTitle = "Играть"; ObjectID = "U5n-bq-n07"; */
+"U5n-bq-n07.normalTitle" = "Играть";
+
+/* Class = "UILabel"; text = "Жми играть"; ObjectID = "wDR-c0-5Kd"; */
+"wDR-c0-5Kd.text" = "Жми играть";
+
+/* Class = "UILabel"; text = "Введите число"; ObjectID = "xL5-mn-rxD"; */
+"xL5-mn-rxD.text" = "Введите число";
+
+/* Class = "UIButton"; normalTitle = "Сброс"; ObjectID = "yEZ-kq-dps"; */
+"yEZ-kq-dps.normalTitle" = "Сброс";
+
+"xx8-Kn-fi8.text" = "Ход";
+
+"lDq-IY-Yzg.normalTitle" = "Настройки";
+
+"V9T-53-kXr.normalTitle" = "Статистика";
+
+"6az-yd-WMf.text" = "Введите диапазон чисел";
+
+"5mg-uO-egD.text" = "Минимум";
+
+"GdX-SJ-ohg.text" = "Максимум";
+
+"Yeg-1q-cIN.normalTitle" = "Применить";
+
+"uqa-2O-uuo.text" = "Количество игр: ";
+
+"LEK-GU-EiV.text" = "Побед: ";
+
+"f1q-ec-ZWL.text" = "Среднее количество игр для победы: ";
+
+

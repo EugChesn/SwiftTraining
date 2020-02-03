@@ -1,0 +1,15 @@
+/*
+  Localize.strings
+  Practice1
+
+  Created by Евгений on 30.01.2020.
+  Copyright © 2020 Евгений. All rights reserved.
+*/
+"promptInput" = "Enter number";
+"fewTextMessage" = "Few";
+"manyTextMessage" = "Many";
+"guessedTextMessage" = "Guessed";
+"pushPlayTextMessage" = "Push play";
+"incorrectTextMessage" = "Incorrect input";
+"rangeTextMessage" = " from the range";
+
