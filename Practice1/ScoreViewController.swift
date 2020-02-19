@@ -8,61 +8,64 @@
 
 import UIKit
 
-class ScoreViewController: UIViewController {
+class ScoreViewController: UIViewController ,UITableViewDelegate{
     
-    var numbersGame : UInt32 = 0
-    var numbersWin : UInt32?
-    var averageStepForWin: Double = 0
+    var dataScore: [SourceData]?
+    @IBOutlet weak var tableView : UITableView!
     
-    @IBOutlet weak var numbersGameLabel : UILabel!
-    @IBOutlet weak var numbersWinLabel : UILabel!
-    @IBOutlet weak var numbersAverageLabel : UILabel!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
-        if numbersGame == 0{
-            numbersWin = UserDefaults.standard.value(forKey: "countWin") as? UInt32
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
 
-            if let numAll = UserDefaults.standard.value(forKey: "countStepAll") as? UInt32{
-                numbersGame = numAll
-            }
-            if let numAver = UserDefaults.standard.value(forKey: "averageStep") as? Double{
-                averageStepForWin = numAver
-            }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("Score", comment: "")
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = NSTextAlignment.center
+        header.textLabel?.font = UIFont(name: "", size: 20)
+        header.textLabel?.textColor = UIColor.systemBlue
+    }
+}
+
+extension ScoreViewController: UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = dataScore?.count{
+            return count
+        }
+        else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        
+        if let data = dataScore{
+            let range = (data[indexPath.row].min, data[indexPath.row].max)
             
+            cell.textLabel?.text = NSLocalizedString("Steps", comment: "")
+                                    + " \(data[indexPath.row].numbersGame)  "
+                                    + NSLocalizedString("Wins", comment: "")
+                                    + "\(data[indexPath.row].numbersWin)"
+            
+            cell.detailTextLabel?.text = NSLocalizedString("RangeStat", comment: "")
+                                    + " \(range)"
+            return cell
         }
-        
-        setValueView()
+        return UITableViewCell()
     }
-    
-    func setValueView() {
-        if let numStr = numbersGameLabel.text{
-            numbersGameLabel.text = numStr + String(numbersGame)
-        }
-        
-        if let wins = numbersWin{
-            if let winsStr = numbersWinLabel.text{
-                numbersWinLabel.text = winsStr + String(wins)
-            }
-            averageStepForWin = Double(numbersGame) / Double(wins)
-            if let averageStr = numbersAverageLabel.text{
-                numbersAverageLabel.text = averageStr + " \(averageStepForWin)"
-            }
-        }
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
