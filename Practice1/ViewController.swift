@@ -8,14 +8,24 @@
 
 import UIKit
 
-protocol UpdateSettings: class {
+protocol UpdateSettingsDelegate: class {
     func update(range: (Int, Int))
 }
 
 class ViewController: UIViewController{
     
     lazy var dataModel = Model()
-    var user_number: Int?
+    var userNumber: Int?
+    
+    private enum GameTextMessage{
+        static let guessed = "guessedTextMessage"
+        static let many = "manyTextMessage"
+        static let few = "fewTextMessage"
+        static let incorrect = "incorrectTextMessage"
+        static let pushPlay = "pushPlayTextMessage"
+        static let range = "rangeTextMessage"
+        static let prompt = "promptInput"
+    }
     
     //Кнопка начало игры
     @IBOutlet weak var startGameButton: UIButton!
@@ -95,10 +105,10 @@ class ViewController: UIViewController{
             
             //Считываем число пользователя и обнуляем текстовое поле
             if let anotherFieldText = inputField.text {
-                user_number = (Int(anotherFieldText))
+                userNumber = (Int(anotherFieldText))
             inputField.text = ""
             
-                if let anotherUserNumber = user_number {
+                if let anotherUserNumber = userNumber {
                     switch dataModel.compareWithUserNumber(userNumber: anotherUserNumber) {
                     case .guessed:
                         alertWin()
@@ -107,15 +117,15 @@ class ViewController: UIViewController{
                         dataModel.resetScore()
                         dataModel.saveUserDefaultScore()
                         
-                        resultLabel.text = NSLocalizedString("guessedTextMessage", comment: "")
+                        resultLabel.text = NSLocalizedString(GameTextMessage.guessed, comment: "")
                         startGameButton.isEnabled = false
-                        
+                    
                         break
                     case .many:
-                         resultLabel.text = NSLocalizedString("manyTextMessage", comment: "")
+                        resultLabel.text = NSLocalizedString(GameTextMessage.many, comment: "")
                         break
                     case .few:
-                        resultLabel.text = NSLocalizedString("fewTextMessage", comment: "")
+                        resultLabel.text = NSLocalizedString(GameTextMessage.few, comment: "")
                         break
                     }
                     
@@ -123,7 +133,7 @@ class ViewController: UIViewController{
             }
         }
         else{
-            resultLabel.text = NSLocalizedString("incorrectTextMessage", comment: "")
+            resultLabel.text = NSLocalizedString(GameTextMessage.incorrect, comment: "")
         }
     }
     
@@ -135,7 +145,7 @@ class ViewController: UIViewController{
         
         startGameButton.isEnabled = true
         stepLabel.text = "0"
-        resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
+        resultLabel.text = NSLocalizedString(GameTextMessage.pushPlay, comment: "")
     }
     
     @IBAction func obsStateTextField(sender : AnyObject) {
@@ -143,7 +153,7 @@ class ViewController: UIViewController{
     }
 }
 
-extension ViewController: UpdateSettings{
+extension ViewController: UpdateSettingsDelegate{
     func update(range: (Int, Int)) {
         dataModel.setUpdateRange(range: range)
         dataModel.generateRandNumber()
@@ -153,7 +163,7 @@ extension ViewController: UpdateSettings{
         resetButton.isEnabled = true
         stepLabel.text = "0"
         
-        promptInputLabel.text = NSLocalizedString("promptInput", comment: "") + NSLocalizedString("rangeTextMessage", comment: "") + "(\(range.0), \(range.1))"
-        resultLabel.text = NSLocalizedString("pushPlayTextMessage", comment: "")
+        promptInputLabel.text = NSLocalizedString(GameTextMessage.prompt, comment: "") + NSLocalizedString(GameTextMessage.range, comment: "") + "(\(range.0), \(range.1))"
+        resultLabel.text = NSLocalizedString(GameTextMessage.pushPlay, comment: "")
     }
 }

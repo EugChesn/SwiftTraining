@@ -18,7 +18,15 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var max : UITextField!
     @IBOutlet weak var min : UITextField!
     
-    weak var delegate: UpdateSettings?
+    weak var delegate: UpdateSettingsDelegate?
+    
+    private enum TextMessagesAlert{
+        static let error = "errorTextMessage"
+        static let notvalid = "notValidTextMessage"
+        static let ok = "alertButtonOk"
+        static let info = "InfoTitle"
+        static let apply = "DataApply"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,26 +34,23 @@ class SettingsViewController: UIViewController {
     }
     
     private func alertNotValid(){
-        let alert = UIAlertController(title: NSLocalizedString("errorTextMessage",                                  comment: ""),
-                                      message: NSLocalizedString("notValidTextMessage", comment: ""),
+        let alert = UIAlertController(title: NSLocalizedString(TextMessagesAlert.error, comment: ""),
+                                      message: NSLocalizedString(TextMessagesAlert.notvalid, comment: ""),
                                       preferredStyle: .alert)
-    
-         let action = UIAlertAction(title: NSLocalizedString("alertButtonOk",                              comment: ""),
-                                    style: .default, handler: nil)
-         alert.addAction(action)
-         present(alert, animated: true, completion: nil)
+        
+        let action = UIAlertAction(title: NSLocalizedString(TextMessagesAlert.ok, comment: ""), style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     private func alertApply(){
-        let alert = UIAlertController(title: NSLocalizedString("InfoTitle",                                                                    comment: ""),
-                                      message: NSLocalizedString("DataApply",
-                                                                 comment: ""),
+        let alert = UIAlertController(title: NSLocalizedString(TextMessagesAlert.info, comment: ""),
+                                      message: NSLocalizedString(TextMessagesAlert.apply, comment: ""),
                                       preferredStyle: .alert)
         
-             let action = UIAlertAction(title: NSLocalizedString("alertButtonOk",                              comment: ""),
-                                        style: .default, handler: nil)
-             alert.addAction(action)
-             present(alert, animated: true, completion: nil)
+        let action = UIAlertAction(title: NSLocalizedString(TextMessagesAlert.ok, comment: ""), style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     private func verifyData(minNum: Int, maxNum: Int) -> ResultVerifyDataRange{

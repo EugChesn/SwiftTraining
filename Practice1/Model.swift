@@ -17,22 +17,22 @@ enum VariantsResultGame{
 struct SourceData : Codable {
     var numbersGame : Int
     var numbersWin : Int
-    //var rangeNumbers: (Int,Int)
+
     var min: Int
     var max: Int
     
     init(numGame: Int, numWin: Int, range: (Int,Int)) {
-        self.numbersGame = numGame
-        self.numbersWin = numWin
-        self.min = range.0
-        self.max = range.1
+        numbersGame = numGame
+        numbersWin = numWin
+        min = range.0
+        max = range.1
     }
     
     init() {
         numbersWin = 0
         numbersGame = 0
-        self.min = 0
-        self.max = 100
+        min = 0
+        max = 100
     }
 }
 
@@ -47,9 +47,9 @@ class Model{
     }
     
     func generateRandNumber (){
-        let range :(Int,Int) = (self.dataScore.min, self.dataScore.max)
+        let range :(Int,Int) = (dataScore.min, dataScore.max)
         let randomNumber = Int.random(in: range.0...range.1)
-        self.randNumber = randomNumber
+        randNumber = randomNumber
     }
     
     func getScores()->[SourceData]{
@@ -80,8 +80,8 @@ class Model{
     }
     
     func setUpdateRange(range:(min: Int,max: Int)){
-        self.dataScore.min = range.0
-        self.dataScore.max = range.1
+        dataScore.min = range.0
+        dataScore.max = range.1
     }
     
     func compareWithUserNumber(userNumber: Int)->VariantsResultGame{

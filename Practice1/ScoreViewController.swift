@@ -8,10 +8,18 @@
 
 import UIKit
 
+
 class ScoreViewController: UIViewController ,UITableViewDelegate{
     
     var dataScore: [SourceData]?
     @IBOutlet weak var tableView : UITableView!
+    
+    private enum LocalizeStat{
+        static let score = "Score"
+        static let steps = "Steps"
+        static let wins = "Wins"
+        static let range = "RangeStat"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +33,7 @@ class ScoreViewController: UIViewController ,UITableViewDelegate{
     
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return NSLocalizedString("Score", comment: "")
+        return NSLocalizedString(LocalizeStat.score, comment: "")
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -57,12 +65,12 @@ extension ScoreViewController: UITableViewDataSource{
         if let data = dataScore{
             let range = (data[indexPath.row].min, data[indexPath.row].max)
             
-            cell.textLabel?.text = NSLocalizedString("Steps", comment: "")
+            cell.textLabel?.text = NSLocalizedString(LocalizeStat.steps, comment: "")
                                     + " \(data[indexPath.row].numbersGame)  "
-                                    + NSLocalizedString("Wins", comment: "")
+                + NSLocalizedString(LocalizeStat.wins, comment: "")
                                     + "\(data[indexPath.row].numbersWin)"
             
-            cell.detailTextLabel?.text = NSLocalizedString("RangeStat", comment: "")
+            cell.detailTextLabel?.text = NSLocalizedString(LocalizeStat.range, comment: "")
                                     + " \(range)"
             return cell
         }
