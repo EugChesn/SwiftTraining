@@ -16,7 +16,7 @@
 		3E948C7123E17DFA00C47739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E948C6F23E17DFA00C47739 /* LaunchScreen.storyboard */; };
 		3EA1D71623E6C8ED00A4C415 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1D71523E6C8ED00A4C415 /* ScoreViewController.swift */; };
 		3EE12EFA23E5CB1000E14951 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE12EF923E5CB1000E14951 /* SettingsViewController.swift */; };
-		3EF6604A23E1C69C00FA7AE8 /* GuessNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF6604923E1C69C00FA7AE8 /* GuessNumber.swift */; };
+		3EF6604A23E1C69C00FA7AE8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF6604923E1C69C00FA7AE8 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 		3E948C7223E17DFA00C47739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EA1D71523E6C8ED00A4C415 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		3EE12EF923E5CB1000E14951 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		3EF6604923E1C69C00FA7AE8 /* GuessNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumber.swift; sourceTree = "<group>"; };
+		3EF6604923E1C69C00FA7AE8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,14 +70,14 @@
 			children = (
 				3E948C6423E17DF600C47739 /* AppDelegate.swift */,
 				3E948C6623E17DF600C47739 /* SceneDelegate.swift */,
+				3EF6604923E1C69C00FA7AE8 /* Model.swift */,
 				3E948C6823E17DF600C47739 /* ViewController.swift */,
-				3E948C6A23E17DF600C47739 /* Main.storyboard */,
 				3EE12EF923E5CB1000E14951 /* SettingsViewController.swift */,
 				3EA1D71523E6C8ED00A4C415 /* ScoreViewController.swift */,
+				3E948C6A23E17DF600C47739 /* Main.storyboard */,
 				3E948C6D23E17DFA00C47739 /* Assets.xcassets */,
 				3E948C6F23E17DFA00C47739 /* LaunchScreen.storyboard */,
 				3E948C7223E17DFA00C47739 /* Info.plist */,
-				3EF6604923E1C69C00FA7AE8 /* GuessNumber.swift */,
 			);
 			path = Practice1;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EF6604A23E1C69C00FA7AE8 /* GuessNumber.swift in Sources */,
+				3EF6604A23E1C69C00FA7AE8 /* Model.swift in Sources */,
 				3E948C6923E17DF600C47739 /* ViewController.swift in Sources */,
 				3E948C6523E17DF600C47739 /* AppDelegate.swift in Sources */,
 				3EE12EFA23E5CB1000E14951 /* SettingsViewController.swift in Sources */,

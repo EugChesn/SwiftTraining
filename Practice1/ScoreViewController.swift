@@ -8,61 +8,65 @@
 
 import UIKit
 
-class ScoreViewController: UIViewController {
-    
-    var numbersGame : UInt32 = 0
-    var numbersWin : UInt32?
-    var averageStepForWin: Double = 0
-    
-    @IBOutlet weak var numbersGameLabel : UILabel!
-    @IBOutlet weak var numbersWinLabel : UILabel!
-    @IBOutlet weak var numbersAverageLabel : UILabel!
 
+class ScoreViewController: UIViewController ,UITableViewDelegate{
+    
+    var dataScore: [SourceData]?
+    @IBOutlet weak var tableView : UITableView!
+    
+    private enum LocalizeStat{
+        static let score = "Score"
+        static let steps = "Steps"
+        static let wins = "Wins"
+        static let range = "RangeStat"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
-        if numbersGame == 0{
-            numbersWin = UserDefaults.standard.value(forKey: "countWin") as? UInt32
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
 
-            if let numAll = UserDefaults.standard.value(forKey: "countStepAll") as? UInt32{
-                numbersGame = numAll
-            }
-            if let numAver = UserDefaults.standard.value(forKey: "averageStep") as? Double{
-                averageStepForWin = numAver
-            }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString(LocalizeStat.score, comment: "")
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = NSTextAlignment.center
+        header.textLabel?.font = UIFont(name: "", size: 20)
+        header.textLabel?.textColor = UIColor.systemBlue
+    }
+}
+
+extension ScoreViewController: UITableViewDataSource{
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataScore?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        
+        if let data = dataScore{
+            let range = (data[indexPath.row].min, data[indexPath.row].max)
             
+            let textLabelStr = NSLocalizedString(LocalizeStat.steps, comment: "")
+                                + " \(data[indexPath.row].numbersGame)  "
+                                + NSLocalizedString(LocalizeStat.wins, comment: "")
+                                + "\(data[indexPath.row].numbersWin)"
+            let detailLabelStr = NSLocalizedString(LocalizeStat.range, comment: "") + " \(range)"
+            
+            cell.textLabel?.text = textLabelStr
+            cell.detailTextLabel?.text = detailLabelStr
+            
+            return cell
         }
-        
-        setValueView()
+        return UITableViewCell()
     }
-    
-    func setValueView() {
-        if let numStr = numbersGameLabel.text{
-            numbersGameLabel.text = numStr + String(numbersGame)
-        }
-        
-        if let wins = numbersWin{
-            if let winsStr = numbersWinLabel.text{
-                numbersWinLabel.text = winsStr + String(wins)
-            }
-            averageStepForWin = Double(numbersGame) / Double(wins)
-            if let averageStr = numbersAverageLabel.text{
-                numbersAverageLabel.text = averageStr + " \(averageStepForWin)"
-            }
-        }
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

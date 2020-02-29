@@ -10,6 +10,18 @@
 "manyTextMessage" = "Many";
 "guessedTextMessage" = "Guessed";
 "pushPlayTextMessage" = "Push play";
+
 "incorrectTextMessage" = "Incorrect input";
 "rangeTextMessage" = " from the range";
 
+"errorTextMessage" = "Error";
+"notValidTextMessage" = "Range is not valid";
+"alertButtonOk" = "Ok";
+
+"Score" = "Score";
+"Steps" = "Steps:";
+"Wins" = "Wins:";
+"RangeStat" = "Range:";
+
+"DataApply" = "Data updated";
+"InfoTitle" = "Info";

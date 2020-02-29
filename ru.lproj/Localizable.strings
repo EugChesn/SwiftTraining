@@ -10,6 +10,20 @@
 "manyTextMessage" = "Много";
 "guessedTextMessage" = "Угадал";
 "pushPlayTextMessage" = "Жми Играть";
+
 "incorrectTextMessage" = "Некорректный ввод";
 "rangeTextMessage" = "  из диапазона";
+
+"errorTextMessage" = "Ошибка";
+"notValidTextMessage" = "Некорректный диапазон";
+"alertButtonOk" = "Ок";
+
+"Score" = "Статистика";
+"Steps" = "Ходов:";
+"Wins" = "Побед:";
+"RangeStat" = "Диапазон:";
+
+"InfoTitle" = "Информация";
+"DataApply" = "Данные применены";
+
 
