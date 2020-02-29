@@ -45,18 +45,9 @@ class ScoreViewController: UIViewController ,UITableViewDelegate{
 }
 
 extension ScoreViewController: UITableViewDataSource{
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = dataScore?.count{
-            return count
-        }
-        else{
-            return 0
-        }
+        return dataScore?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,13 +56,15 @@ extension ScoreViewController: UITableViewDataSource{
         if let data = dataScore{
             let range = (data[indexPath.row].min, data[indexPath.row].max)
             
-            cell.textLabel?.text = NSLocalizedString(LocalizeStat.steps, comment: "")
-                                    + " \(data[indexPath.row].numbersGame)  "
-                + NSLocalizedString(LocalizeStat.wins, comment: "")
-                                    + "\(data[indexPath.row].numbersWin)"
+            let textLabelStr = NSLocalizedString(LocalizeStat.steps, comment: "")
+                                + " \(data[indexPath.row].numbersGame)  "
+                                + NSLocalizedString(LocalizeStat.wins, comment: "")
+                                + "\(data[indexPath.row].numbersWin)"
+            let detailLabelStr = NSLocalizedString(LocalizeStat.range, comment: "") + " \(range)"
             
-            cell.detailTextLabel?.text = NSLocalizedString(LocalizeStat.range, comment: "")
-                                    + " \(range)"
+            cell.textLabel?.text = textLabelStr
+            cell.detailTextLabel?.text = detailLabelStr
+            
             return cell
         }
         return UITableViewCell()

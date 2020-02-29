@@ -91,9 +91,9 @@ class ViewController: UIViewController{
     
     private func alertWin(){
         let alert = UIAlertController(title: "Победа", message: "Ходов: \(dataModel.getCountAll())", preferredStyle: .alert)
-         let action = UIAlertAction(title: "Ok!", style: .default, handler: nil)
-         alert.addAction(action)
-         present(alert, animated: true, completion: nil)
+        let action = UIAlertAction(title: "Ok!", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func startGame(sender : AnyObject) {
@@ -106,8 +106,8 @@ class ViewController: UIViewController{
             //Считываем число пользователя и обнуляем текстовое поле
             if let anotherFieldText = inputField.text {
                 userNumber = (Int(anotherFieldText))
-            inputField.text = ""
-            
+                inputField.text = ""
+                
                 if let anotherUserNumber = userNumber {
                     switch dataModel.compareWithUserNumber(userNumber: anotherUserNumber) {
                     case .guessed:
@@ -119,14 +119,11 @@ class ViewController: UIViewController{
                         
                         resultLabel.text = NSLocalizedString(GameTextMessage.guessed, comment: "")
                         startGameButton.isEnabled = false
-                    
-                        break
+                        
                     case .many:
                         resultLabel.text = NSLocalizedString(GameTextMessage.many, comment: "")
-                        break
                     case .few:
                         resultLabel.text = NSLocalizedString(GameTextMessage.few, comment: "")
-                        break
                     }
                     
                 }

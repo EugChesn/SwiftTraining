@@ -67,10 +67,8 @@ class SettingsViewController: UIViewController {
                 case .valid:
                     alertApply()
                     delegate?.update(range: (minValNum, maxValNum))
-                    break
                 case .notvalid:
                     alertNotValid()
-                    break
                 }
             }
         }
